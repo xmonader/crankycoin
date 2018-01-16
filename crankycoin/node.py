@@ -3,8 +3,8 @@ import requests
 from klein import Klein
 from multiprocessing import Process
 
-from blockchain import *
-from transaction import *
+from .blockchain import *
+from .transaction import *
 
 
 class NodeMixin(object):
@@ -345,7 +345,7 @@ class FullNode(NodeMixin):
             except requests.exceptions.RequestException as re:
                 bad_nodes.add(node)
         if len(latest_blocks) > 0:
-            for latest_block in sorted(latest_blocks.items(), reverse=True):
+            for latest_block in sorted(list(latest_blocks.items()), reverse=True):
                 index = latest_block[0]
                 current_hashes = latest_block[1]
                 success = True

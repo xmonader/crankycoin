@@ -11,7 +11,7 @@ if passphrase != verifypass:
     print("Passphrases do not match")
     exit()
 
-secret = raw_input("Secret: ")
+secret = input("Secret: ")
 hashedpass = hashlib.sha256(passphrase).digest()
 cipher = AES.new(hashedpass, AES.MODE_EAX)
 ciphertext, tag = cipher.encrypt_and_digest(secret)
@@ -19,4 +19,4 @@ ciphertext, tag = cipher.encrypt_and_digest(secret)
 combined = cipher.nonce + tag + ciphertext
 
 print("Encrypted private key: ")
-print combined.encode('hex')
+print(combined.encode('hex'))

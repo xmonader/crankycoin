@@ -40,32 +40,32 @@ def client():
             exit()
 
     while True:
-        cmd = raw_input("{} ({}) wallet > ".format(config['network']['name'], config['network']['ticker_symbol']))
+        cmd = input("{} ({}) wallet > ".format(config['network']['name'], config['network']['ticker_symbol']))
         cmd_split = cmd.split()
         try:
             if cmd_split[0] == "balance":
                 if len(cmd_split) == 2:
-                    print client.get_balance(cmd_split[1])
+                    print(client.get_balance(cmd_split[1]))
                 else:
-                    print client.get_balance()
+                    print(client.get_balance())
             elif cmd_split[0] == "send":
                 if len(cmd_split) == 4:
-                    print client.create_transaction(cmd_split[1], float(cmd_split[2]), float(cmd_split[3]))
+                    print(client.create_transaction(cmd_split[1], float(cmd_split[2]), float(cmd_split[3])))
                 else:
                     print("\nRequires destination and amount\n")
             elif cmd_split[0] == "publickey":
-                print client.get_public_key()
+                print(client.get_public_key())
             elif cmd_split[0] == "privatekey":
-                print client.get_private_key()
+                print(client.get_private_key())
             elif cmd_split[0] == "history":
                 if len(cmd_split) == 2:
-                    print client.get_transaction_history(cmd_split[1])
+                    print(client.get_transaction_history(cmd_split[1]))
                 else:
-                    print client.get_transaction_history()
+                    print(client.get_transaction_history())
             elif cmd_split[0] == "quit" or cmd_split[0] == "exit":
                 exit()
             else:  # help
-                print helptext
+                print(helptext)
         except IndexError:
             pass
 
@@ -88,42 +88,42 @@ def full():
         print("\n\npublic key and IP must be provided.\n\n")
         exit()
     else:
-        print "\n\nfull node starting...\n\n"
+        print("\n\nfull node starting...\n\n")
         fullnode = FullNode(ip, public_key)
 
     while True:
-        cmd = raw_input("{} ({}) full node > ".format(config['network']['name'], config['network']['ticker_symbol']))
+        cmd = input("{} ({}) full node > ".format(config['network']['name'], config['network']['ticker_symbol']))
         cmd_split = cmd.split()
         try:
             if cmd_split[0] == "synchronize":
-                print fullnode.synchronize()
+                print(fullnode.synchronize())
             elif cmd_split[0] == "addnode":
                 if len(cmd_split) == 2:
-                    print fullnode.add_node(cmd_split[1])
+                    print(fullnode.add_node(cmd_split[1]))
                 else:
                     print("\nRequires host of node to add\n")
             elif cmd_split[0] == "getnodes":
-                print fullnode.full_nodes
+                print(fullnode.full_nodes)
             elif cmd_split[0] == "loadblockchain":
                 if len(cmd_split) == 2:
-                    print fullnode.load_blockchain(cmd_split[1])
+                    print(fullnode.load_blockchain(cmd_split[1]))
                 else:
                     print("\nRequires path/to/blockchain\n")
             elif cmd_split[0] == "getblock":
                 if len(cmd_split) == 2:
-                    print fullnode.blockchain.get_block_by_index(int(cmd_split[1]))
+                    print(fullnode.blockchain.get_block_by_index(int(cmd_split[1])))
                 else:
-                    print fullnode.blockchain.get_latest_block()
+                    print(fullnode.blockchain.get_latest_block())
             elif cmd_split[0] == "getblocks":
                 if len(cmd_split) == 3:
-                    print fullnode.blockchain.get_blocks_range(int(cmd_split[1]), int(cmd_split[2]))
+                    print(fullnode.blockchain.get_blocks_range(int(cmd_split[1]), int(cmd_split[2])))
                 else:
-                    print fullnode.blockchain.get_all_blocks()
+                    print(fullnode.blockchain.get_all_blocks())
             elif cmd_split[0] == "quit" or cmd_split[0] == "exit":
                 fullnode.shutdown(True)
                 exit()
             else:  # help
-                print helptext
+                print(helptext)
         except IndexError:
             pass
 
@@ -146,42 +146,42 @@ def miner():
         print("\n\npublic key and IP must be provided.\n\n")
         exit()
     else:
-        print "\n\nmining node starting...\n\n"
+        print("\n\nmining node starting...\n\n")
         fullnode = FullNode(ip, public_key, mining=True)
 
     while True:
-        cmd = raw_input("{} ({}) full node > ".format(config['network']['name'], config['network']['ticker_symbol']))
+        cmd = input("{} ({}) full node > ".format(config['network']['name'], config['network']['ticker_symbol']))
         cmd_split = cmd.split()
         try:
             if cmd_split[0] == "synchronize":
-                print fullnode.synchronize()
+                print(fullnode.synchronize())
             elif cmd_split[0] == "addnode":
                 if len(cmd_split) == 2:
-                    print fullnode.add_node(cmd_split[1])
+                    print(fullnode.add_node(cmd_split[1]))
                 else:
                     print("\nRequires host of node to add\n")
             elif cmd_split[0] == "getnodes":
-                print fullnode.full_nodes
+                print(fullnode.full_nodes)
             elif cmd_split[0] == "loadblockchain":
                 if len(cmd_split) == 2:
-                    print fullnode.load_blockchain(cmd_split[1])
+                    print(fullnode.load_blockchain(cmd_split[1]))
                 else:
                     print("\nRequires path/to/blockchain\n")
             elif cmd_split[0] == "getblock":
                 if len(cmd_split) == 2:
-                    print fullnode.blockchain.get_block_by_index(int(cmd_split[1]))
+                    print(fullnode.blockchain.get_block_by_index(int(cmd_split[1])))
                 else:
-                    print fullnode.blockchain.get_latest_block()
+                    print(fullnode.blockchain.get_latest_block())
             elif cmd_split[0] == "getblocks":
                 if len(cmd_split) == 3:
-                    print fullnode.blockchain.get_blocks_range(int(cmd_split[1]), int(cmd_split[2]))
+                    print(fullnode.blockchain.get_blocks_range(int(cmd_split[1]), int(cmd_split[2])))
                 else:
-                    print fullnode.blockchain.get_all_blocks()
+                    print(fullnode.blockchain.get_all_blocks())
             elif cmd_split[0] == "quit" or cmd_split[0] == "exit":
                 fullnode.shutdown(True)
                 exit()
             else:  # help
-                print helptext
+                print(helptext)
         except IndexError:
             pass
 

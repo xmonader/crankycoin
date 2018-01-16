@@ -3,8 +3,8 @@ import time
 import json
 import pyscrypt
 
-from config import *
-from errors import *
+from .config import *
+from .errors import *
 
 
 class BlockHeader(object):
@@ -24,7 +24,7 @@ class BlockHeader(object):
             "{0:0>8}".format(self.nonce, 'x')
 
     def to_json(self):
-        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in o.__dict__.items()},
+        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in list(o.__dict__.items())},
                           sort_keys=True)
 
     def __repr__(self):
@@ -116,7 +116,7 @@ class Block(object):
         return merkle_base[0]
 
     def to_json(self):
-        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in o.__dict__.items()},
+        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in list(o.__dict__.items())},
                           sort_keys=True)
 
     def __repr__(self):

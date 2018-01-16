@@ -86,7 +86,7 @@ class TestBlockchain(unittest.TestCase):
 
             self.assertEqual(transaction_hash_one, transaction_hash_two)
             self.assertEqual(transaction_hash_one, transaction_hash_three)
-            self.assertEquals(1, len(set([transaction_hash_one, transaction_hash_two, transaction_hash_three])))
+            self.assertEqual(1, len(set([transaction_hash_one, transaction_hash_two, transaction_hash_three])))
 
     @unittest.skip("Deprecated test.  Leaving here until a replacement is created in test_transaction")
     def test_calculate_transaction_hash_whenCalledWithDifferentTransactions_thenReturnsDifferentSha256Hash(self):
@@ -133,7 +133,7 @@ class TestBlockchain(unittest.TestCase):
             self.assertNotEqual(transaction_hash_one, transaction_hash_two)
             self.assertNotEqual(transaction_hash_one, transaction_hash_three)
             self.assertNotEqual(transaction_one, transaction_hash_four)
-            self.assertEquals(4, len(set([transaction_hash_one, transaction_hash_two, transaction_hash_three, transaction_hash_four])))
+            self.assertEqual(4, len(set([transaction_hash_one, transaction_hash_two, transaction_hash_three, transaction_hash_four])))
 
     @unittest.skip("Deprecated test.  Leaving here until a replacement is created in test_block")
     def test_calculate_block_hash_whenCalledWithSameBlockData_thenReturnsConsistentSha256Hash(self):
@@ -210,7 +210,7 @@ class TestBlockchain(unittest.TestCase):
             self.assertNotEqual(block_hash_one, block_hash_four)
             self.assertNotEqual(block_hash_one, block_hash_five)
             self.assertNotEqual(block_hash_one, block_hash_six)
-            self.assertEquals(6, len(set([block_hash_one, block_hash_two, block_hash_three, block_hash_four, block_hash_five, block_hash_six])))
+            self.assertEqual(6, len(set([block_hash_one, block_hash_two, block_hash_three, block_hash_four, block_hash_five, block_hash_six])))
 
     def test_check_hash_and_hash_pattern_whenBlockHasValidHashAndPattern_thenReturnsTrue(self):
         mock_block = Mock(Block)
@@ -1439,7 +1439,7 @@ class TestBlockchain(unittest.TestCase):
             transaction = subject.pop_next_unconfirmed_transaction()
 
             self.assertEqual(transaction, transaction_one)
-            self.assertEqual(subject.unconfirmed_transactions.qsize(), 2L)
+            self.assertEqual(subject.unconfirmed_transactions.qsize(), 2)
 
     @unittest.skip("using a real Queue flakes")
     def test_pop_next_unconfirmed_transaction_whenNoTransactionsExist_thenReturnsNone(self):

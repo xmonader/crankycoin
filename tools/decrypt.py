@@ -4,7 +4,7 @@ from Cryptodome.Cipher import AES
 import hashlib
 from getpass import getpass
 
-encrypted = raw_input("Cipher: ")
+encrypted = input("Cipher: ")
 passphrase = getpass("Enter passphrase: ")
 
 encrypted = encrypted.decode('hex')
@@ -18,4 +18,4 @@ cipher = AES.new(hashedpass, AES.MODE_EAX, nonce)
 private_key = cipher.decrypt_and_verify(ciphertext, tag)
 
 print("Decrypted private key: ")
-print private_key
+print(private_key)

@@ -1,11 +1,11 @@
 import time
 from math import floor
 from multiprocessing import Lock, Manager
-from Queue import Empty, Full
+from queue import Empty, Full
 
-from block import *
-from errors import *
-from transaction import *
+from .block import *
+from .errors import *
+from .transaction import *
 
 
 class Blockchain(object):

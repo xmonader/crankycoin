@@ -3,7 +3,7 @@ import hashlib
 import json
 import time
 
-from errors import *
+from .errors import *
 
 
 class Transaction(object):
@@ -85,7 +85,7 @@ class Transaction(object):
         return coincurve.PublicKey(self._source).verify(self._signature, self.to_signable())
 
     def to_json(self):
-        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in o.__dict__.items()},
+        return json.dumps(self, default=lambda o: {key.lstrip('_'): value for key, value in list(o.__dict__.items())},
                           sort_keys=True)
 
     def __repr__(self):

@@ -2,9 +2,9 @@ import coincurve
 import random
 import requests
 
-from config import *
-from node import NodeMixin
-from transaction import *
+from .config import *
+from .node import NodeMixin
+from .transaction import *
 
 
 class Client(NodeMixin):
